@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+  <style>
+    body{
+      padding: 0;
+      margin: 0;
+    }
+    p{
+      margin-top: 50px;
+    }
+    .popup{
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      display: none;
+      top:0;
+    }
+    .content{
+      position: absolute;
+      margin: auto;
+      top: 0;
+      bottom:0;
+      left: 0;
+      right: 0;
+      background-color: red;
+      color: #000;
+      width: 50vw;
+      height: 50vh;
+      z-index: 10000;
+      overflow: scroll;
+    }
+    .black{
+      background-color: #000;
+      opacity: 0.2;
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .open{
+      display: block;
+    }
+    .popClose{
+      display: none;
+    }
+    button{
+      background: blue;
+      width: 100%;
+      color:#fff;
+    }
+    .overflowHidden{
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <button type="button" onclick="popOpen()" name="button">open</button>
+  <div class="popup">
+    <div class="black">
+
+    </div>
+    <div class="content">
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <button type="button" onclick="overflowHidden()" name="button">body over hidden</button>
+      <p>content</p>
+      <p>content</p>
+      <p>content</p>
+      <button type="button" onClick="popClose()" name="button">popClose</button>
+      <p>content</p>
+    </div>
+  </div>
+
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <p>test</p>
+  <script type="text/javascript">
+    var content = $('.content')
+    height = content.height()
+    scrollHeight = content.get(0).scrollHeight;
+    content.bind('mousewheel', function(e, d) {
+      if((this.scrollTop === (scrollHeight - height) && d < 0) || (this.scrollTop === 0 && d > 0)) {
+        e.preventDefault();
+      }
+    });
+    // content.addEventListener('mousewheel', function(e, d) {
+    //   if((this.scrollTop === (scrollHeight - height) && d < 0) || (this.scrollTop === 0 && d > 0)) {
+    //     e.preventDefault();
+    //   }
+    // })
+    // content.addEventListener('scroll', function(e) {
+    //   e.stopPropagation();
+    //   window.alert(e.stopPropagation);
+    // })
+    function popOpen(e) {
+      var popup = document.querySelector('.popup')
+      popup.classList.add("open");
+      popup.classList.remove("popClose");
+    }
+    function popClose() {
+      var popup = document.querySelector('.popup')
+      popup.classList.remove("open");
+      popup.classList.add("popClose");
+    }
+    function overflowHidden() {
+      var body = document.querySelector('body')
+      body.classList.toggle('overflowHidden')
+    }
+
+  </script>
+  <script src="https://rawgit.com/jquery/jquery-mousewheel/master/jquery.mousewheel.js"></script>
+</body>
+</html>
